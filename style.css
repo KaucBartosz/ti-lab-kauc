@@ -20,8 +20,21 @@ section {
 .site-header {
   background: #1f7a5c;
   color: #fff;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   padding: 1rem;
+}
+
+.site-header__brand h1 {
+  font-size: 1.5rem;
+}
+
+.site-header__brand p {
+  font-size: 0.9rem;
+  opacity: 0.9;
 }
 
 .menu__list {
@@ -43,6 +56,7 @@ section {
 
 .menu__list a:hover {
   background: rgba(255, 255, 255, 0.15);
+  color: #ffbf3f;
 }
 
 @media (max-width: 600px) {
@@ -54,17 +68,23 @@ section {
 .cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.5rem;
   margin-top: 1rem;
 }
 
 .card {
-  flex: 1 1 250px;
+  flex: 1 1 260px;
   background: #fff;
   border: 1px solid #dde5e1;
   border-radius: 10px;
   padding: 1.25rem;
   text-align: center;
+}
+
+.card__price {
+  margin-top: 0.5rem;
+  font-weight: 700;
+  color: #1f7a5c;
 }
 
 .card__icon {
@@ -130,4 +150,8 @@ section {
 
 #kontakt a {
   color: #fff;
+}
+
+.num {
+  text-align: right;
 }

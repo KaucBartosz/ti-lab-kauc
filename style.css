@@ -32,6 +32,23 @@ section {
   font-size: 1.5rem;
 }
 
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+.logo svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+.logo:hover span {
+  color: #ffbf3f;
+}
+
 .site-header__brand p {
   font-size: 0.9rem;
   opacity: 0.9;

@@ -8,6 +8,28 @@ $cennik = [
   ['nazwa' => 'Wymiana łańcucha', 'czas' => 'ok. 30 min', 'cena' => 'od 40'],
   ['nazwa' => 'Serwis kompletny', 'czas' => 'do 2 dni', 'cena' => '180'],
 ];
+
+// Powitanie z parametru ?imie= — surowej wartości nigdy nie wypisujemy.
+$imieParam = $_GET['imie'] ?? 'Kliencie';
+$imie = is_string($imieParam) ? trim($imieParam) : '';
+if ($imie === '') {
+  $imie = 'Kliencie';
+}
+if (mb_strlen($imie, 'UTF-8') > 40) {
+  $imie = mb_substr($imie, 0, 40, 'UTF-8');
+}
+
+// Najwyższa cena — skala wykresu SVG.
+$maxCena = 0;
+foreach ($cennik as $usluga) {
+  $wartosc = (int) preg_replace('/\D+/', '', $usluga['cena']);
+  if ($wartosc > $maxCena) {
+    $maxCena = $wartosc;
+  }
+}
+if ($maxCena === 0) {
+  $maxCena = 1;
+}
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +61,7 @@ $cennik = [
         </a>
       </h1>
       <p>Mała pracownia rowerowa</p>
+      <p class="greeting">Cześć, <?= htmlspecialchars($imie, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>!</p>
     </div>
 
     <button class="menu-toggle" aria-expanded="false">Menu</button>
@@ -101,6 +124,25 @@ $cennik = [
           <?php endforeach; ?>
         </tbody>
       </table>
+    </section>
+
+    <section id="wykres">
+      <h2>Ceny w liczbach</h2>
+
+      <svg class="chart" viewBox="0 0 480 220" role="img" aria-labelledby="wykres-tytul">
+        <title id="wykres-tytul">Porównanie cen usług w złotych</title>
+        <?php foreach ($cennik as $i => $usluga): ?>
+          <?php
+            $wartosc = (int) preg_replace('/\D+/', '', $usluga['cena']);
+            $y = 15 + $i * 50;
+            $szerokosc = max(4, (int) round($wartosc / $maxCena * 200));
+            $klasa = $wartosc === $maxCena ? 'chart__bar chart__bar--max' : 'chart__bar';
+          ?>
+          <text x="8" y="<?= $y + 19 ?>" class="chart__label"><?= htmlspecialchars($usluga['nazwa'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></text>
+          <rect x="210" y="<?= $y ?>" width="<?= $szerokosc ?>" height="28" rx="4" class="<?= $klasa ?>"/>
+          <text x="<?= 218 + $szerokosc ?>" y="<?= $y + 19 ?>" class="chart__value"><?= $wartosc ?> zł</text>
+        <?php endforeach; ?>
+      </svg>
     </section>
   </main>
 

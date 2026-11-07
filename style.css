@@ -54,6 +54,12 @@ section {
   opacity: 0.9;
 }
 
+.site-header__brand .greeting {
+  color: #ffbf3f;
+  font-weight: 600;
+  opacity: 1;
+}
+
 .menu-toggle {
   display: none;
   background: rgba(255, 255, 255, 0.15);
@@ -179,6 +185,33 @@ section {
     padding: 0.4rem 0.5rem;
     font-size: 0.9rem;
   }
+}
+
+.chart {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  margin-top: 1rem;
+}
+
+.chart__label {
+  font-size: 11px;
+  fill: #22302b;
+}
+
+.chart__value {
+  font-size: 11px;
+  font-weight: 700;
+  fill: #22302b;
+}
+
+.chart__bar {
+  fill: #1f7a5c;
+}
+
+.chart__bar--max {
+  fill: #ffbf3f;
 }
 
 #kontakt {

@@ -37,6 +37,21 @@ section {
   opacity: 0.9;
 }
 
+.menu-toggle {
+  display: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 6px;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+}
+
+.menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
 .menu__list {
   list-style: none;
   display: flex;
@@ -60,6 +75,19 @@ section {
 }
 
 @media (max-width: 600px) {
+  .menu-toggle {
+    display: inline-block;
+  }
+
+  .menu {
+    display: none;
+    width: 100%;
+  }
+
+  .menu.menu--open {
+    display: block;
+  }
+
   .menu__list {
     flex-direction: column;
   }

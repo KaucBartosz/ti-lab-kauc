@@ -1,0 +1,111 @@
+<?php
+$firma = 'Szprycha';
+$rok = date('Y');
+?>
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Szprycha – serwis rowerowy</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header__brand">
+      <h1>Szprycha</h1>
+      <p>Mała pracownia rowerowa</p>
+    </div>
+
+    <button class="menu-toggle" aria-expanded="false">Menu</button>
+
+    <nav class="menu">
+      <ul class="menu__list">
+        <li><a href="#uslugi">Oferta</a></li>
+        <li><a href="#cennik">Cennik</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="uslugi">
+      <h2>Nasza oferta</h2>
+
+      <div class="cards">
+        <article class="card">
+          <img src="img/rower.svg" alt="Ikona roweru" class="card__icon" width="64" height="64">
+          <h3>Regulacja</h3>
+          <p>Dostrojenie biegów i hamulców, tak żeby wszystko chodziło płynnie.</p>
+          <p class="card__price">od 60 zł</p>
+        </article>
+
+        <article class="card">
+          <img src="img/kolo.svg" alt="Ikona koła rowerowego" class="card__icon" width="64" height="64">
+          <h3>Wymiana części</h3>
+          <p>Dętki, opony, łańcuchy i klocki hamulcowe – nowe części na szybki czas.</p>
+          <p class="card__price">od 20 zł</p>
+        </article>
+
+        <article class="card card--highlight">
+          <img src="img/narzedzia.svg" alt="Ikona narzędzi serwisowych" class="card__icon" width="64" height="64">
+          <h3>Serwis kompletny <span class="card__badge">Najczęściej wybierane</span></h3>
+          <p>Pełny przegląd: smarowanie łańcucha, kontrola śrubek i przygotowanie do sezonu.</p>
+          <p class="card__price">od 180 zł</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="cennik">
+      <h2>Cennik</h2>
+
+      <table class="pricing__table">
+        <thead>
+          <tr>
+            <th scope="col">Usługa</th>
+            <th scope="col">Czas</th>
+            <th scope="col" class="num">Cena</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Regulacja biegów i hamulców</td>
+            <td>ok. 40 min</td>
+            <td class="num">60 zł</td>
+          </tr>
+          <tr>
+            <td>Wymiana dętki lub opony</td>
+            <td>ok. 20 min</td>
+            <td class="num">od 20 zł</td>
+          </tr>
+          <tr>
+            <td>Wymiana łańcucha</td>
+            <td>ok. 30 min</td>
+            <td class="num">od 40 zł</td>
+          </tr>
+          <tr>
+            <td>Serwis kompletny</td>
+            <td>do 2 dni</td>
+            <td class="num">180 zł</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer id="kontakt">
+    <h2>Kontakt</h2>
+    <p>&copy; <?= $rok ?> <?= $firma ?></p>
+    <address>
+      <p>ul. Rowerowa 12, 00-001 Warszawa</p>
+      <p><a href="tel:+48600100200">+48 600 100 200</a></p>
+      <p><a href="mailto:kontakt@szprycha.pl">kontakt@szprycha.pl</a></p>
+      <p>Otwarte: pon–pt 9:00–18:00, sob 9:00–14:00</p>
+    </address>
+  </footer>
+
+</body>
+</html>

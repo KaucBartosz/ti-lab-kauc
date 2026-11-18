@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 session_start();
 require 'baza.php';
@@ -36,6 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
         crossorigin="anonymous">
 </head>
+=======
+>>>>>>> 9ef2aad82992c54a58d286a3ec65212bf7d518ff
 <body class="bg-light">
   <main class="container" style="max-width: 420px">
     <div class="card mt-5 shadow-sm">
@@ -60,4 +63,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
   </main>
 </body>
-</html>

@@ -31,7 +31,7 @@ if ((int) $pdo->query('SELECT COUNT(*) FROM uzytkownicy')->fetchColumn() === 0) 
     $z = $pdo->prepare('INSERT INTO uzytkownicy (login, haslo_hash) VALUES (:login, :haslo_hash)');
     $z->execute([
         'login' => 'admin',
-        'haslo_hash' => password_hash('TwojeHaslo', PASSWORD_DEFAULT),
+        'haslo_hash' => password_hash('Szprycha!2026', PASSWORD_DEFAULT),
     ]);
 }
 

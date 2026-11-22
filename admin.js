@@ -18,15 +18,15 @@ formDodaj?.addEventListener('submit', async function (e) {
     const tdNazwa = document.createElement('td');
     tdNazwa.textContent = usluga.nazwa;
     const tdCena = document.createElement('td');
-    tdCena.textContent = usluga.cena + ' zł';
+    tdCena.textContent = usluga.cena + ' zl';
     const tdAkcja = document.createElement('td');
     tr.append(tdNazwa, tdCena, tdAkcja);
     tbody.append(tr);
     formDodaj.reset();
   } else if (odpowiedz.status === 401) {
-    alert('Zaloguj się ponownie.');
+    alert('Zaloguj sie ponownie.');
   } else {
-    let komunikat = 'Błąd dodawania.';
+    let komunikat = 'Blad dodawania.';
     try { komunikat = (await odpowiedz.json()).blad || komunikat; } catch (e) {}
     alert(komunikat);
   }

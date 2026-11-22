@@ -1,26 +1,27 @@
 const przycisk = document.querySelector('.menu-toggle');
 const menu     = document.querySelector('.menu');
 
-przycisk.addEventListener('click', function () {
+przycisk?.addEventListener('click', function () {
   const otwarte = menu.classList.toggle('menu--open');
   przycisk.setAttribute('aria-expanded', otwarte);
 });
 
 const statusInfo = document.getElementById('status');
 const tabelaBody = document.querySelector('.pricing__table tbody');
+const poleMax = document.getElementById('max');
+const wykres = document.getElementById('wykres');
+const SVG_NS = 'http://www.w3.org/2000/svg';
 
 async function wczytajUslugi(max = '') {
   try {
-    const adres = max === ''
-      ? 'api.php'
-      : 'api.php?max=' + encodeURIComponent(max);
+    const adres = max === '' ? 'api.php' : 'api.php?max=' + encodeURIComponent(max);
     const odpowiedz = await fetch(adres);
     if (!odpowiedz.ok) throw new Error('HTTP ' + odpowiedz.status);
     const uslugi = await odpowiedz.json();
     pokazTabele(uslugi);
     rysujWykres(uslugi);
   } catch (blad) {
-    if (statusInfo) statusInfo.textContent = 'Nie udało się wczytać cennika.';
+    if (statusInfo) statusInfo.textContent = 'Nie udalo sie wczytac cennika.';
   }
 }
 
@@ -30,26 +31,22 @@ function pokazTabele(uslugi) {
   uslugi.forEach(function (usluga) {
     const tr = document.createElement('tr');
     const tdNazwa = document.createElement('td');
-    tdNazwa.textContent = usluga.nazwa; // textContent = ochrona przed XSS
+    tdNazwa.textContent = usluga.nazwa;
     const tdCzas = document.createElement('td');
     tdCzas.textContent = usluga.czas ?? '';
     const tdCena = document.createElement('td');
     tdCena.className = 'num';
-    tdCena.textContent = usluga.cena + ' zł';
+    tdCena.textContent = usluga.cena + ' zl';
     tr.append(tdNazwa, tdCzas, tdCena);
     tabelaBody.append(tr);
   });
 }
 
-const poleMax = document.getElementById('max');
-const wykres = document.getElementById('wykres');
-const SVG_NS = 'http://www.w3.org/2000/svg';
-
 function rysujWykres(uslugi) {
   if (!wykres) return;
   while (wykres.firstChild) wykres.removeChild(wykres.firstChild);
   const title = document.createElementNS(SVG_NS, 'title');
-  title.textContent = 'Porównanie cen usług w złotych';
+  title.textContent = 'Porownanie cen uslug';
   wykres.append(title);
 
   const wartosci = uslugi.map(u => u.popularnosc || u.cena);
@@ -85,8 +82,6 @@ function rysujWykres(uslugi) {
   });
 }
 
-// nadpisz wczytajUslugi, żeby rysowała wykres (już wywołuje rysujWykres)
-
 let opoznienie;
 if (poleMax) {
   poleMax.addEventListener('input', function () {
@@ -96,6 +91,5 @@ if (poleMax) {
     }, 300);
   });
 }
-
 
 wczytajUslugi();

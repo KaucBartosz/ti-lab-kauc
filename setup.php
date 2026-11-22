@@ -14,7 +14,6 @@ $pdo->exec('CREATE TABLE IF NOT EXISTS uzytkownicy (
     haslo_hash TEXT NOT NULL
 )');
 
-// migracja dla istniejącej bazy
 try { $pdo->exec('ALTER TABLE uslugi ADD COLUMN popularnosc INTEGER DEFAULT 0'); } catch (PDOException $e) { }
 
 if ((int) $pdo->query('SELECT COUNT(*) FROM uslugi')->fetchColumn() === 0) {

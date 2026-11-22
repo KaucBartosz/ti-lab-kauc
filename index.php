@@ -102,6 +102,7 @@ if ($maxCena === 0) {
 
     <section id="cennik">
       <h2>Cennik</h2>
+      <p id="status" roles="status"></p>
 
       <table class="pricing__table">
         <thead>

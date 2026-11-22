@@ -90,7 +90,7 @@ $uslugi = $pdo->query('SELECT id, nazwa, cena FROM uslugi ORDER BY nazwa')->fetc
 
       <div class="col-lg-4">
         <h2 class="h4">Dodaj usługę</h2>
-        <form method="post">
+        <form id="form-dodaj" method="post">
           <input type="hidden" name="akcja" value="dodaj">
           <div class="mb-3">
             <label for="nazwa" class="form-label">Nazwa</label>
@@ -105,5 +105,7 @@ $uslugi = $pdo->query('SELECT id, nazwa, cena FROM uslugi ORDER BY nazwa')->fetc
       </div>
     </div>
   </main>
+  <script src="admin.js" defer></script>
+
 </body>
 </html>

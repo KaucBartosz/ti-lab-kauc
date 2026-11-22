@@ -2,12 +2,9 @@
 $firma = 'Szprycha';
 $rok = date('Y');
 
-$cennik = [
-  ['nazwa' => 'Regulacja biegów i hamulców', 'czas' => 'ok. 40 min', 'cena' => '60'],
-  ['nazwa' => 'Wymiana dętki lub opony', 'czas' => 'ok. 20 min', 'cena' => 'od 20'],
-  ['nazwa' => 'Wymiana łańcucha', 'czas' => 'ok. 30 min', 'cena' => 'od 40'],
-  ['nazwa' => 'Serwis kompletny', 'czas' => 'do 2 dni', 'cena' => '180'],
-];
+require 'baza.php';
+$cennik = $pdo->query('SELECT nazwa, czas, cena FROM uslugi ORDER BY cena')->fetchAll();
+
 
 // Powitanie z parametru ?imie= — surowej wartości nigdy nie wypisujemy.
 $imieParam = $_GET['imie'] ?? 'Kliencie';

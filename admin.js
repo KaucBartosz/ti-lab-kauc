@@ -18,7 +18,7 @@ formDodaj?.addEventListener('submit', async function (e) {
     const tdNazwa = document.createElement('td');
     tdNazwa.textContent = usluga.nazwa;
     const tdCena = document.createElement('td');
-    tdCena.textContent = usluga.cena + ' zl';
+    tdCena.textContent = usluga.cena + ' zł';
     const tdAkcja = document.createElement('td');
     tr.append(tdNazwa, tdCena, tdAkcja);
     tbody.append(tr);
@@ -26,7 +26,7 @@ formDodaj?.addEventListener('submit', async function (e) {
   } else if (odpowiedz.status === 401) {
     alert('Zaloguj sie ponownie.');
   } else {
-    let komunikat = 'Blad dodawania.';
+    let komunikat = 'Błąd dodawania.';
     try { komunikat = (await odpowiedz.json()).blad || komunikat; } catch (e) {}
     alert(komunikat);
   }

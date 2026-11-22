@@ -25,7 +25,7 @@ if ($metoda === 'GET') {
 if ($metoda === 'POST') {
     session_start();
     if (empty($_SESSION['uzytkownik'])) {
-        odpowiedz(401, ['blad' => 'Nie jestes zalogowany.']);
+        odpowiedz(401, ['blad' => 'Nie jesteś zalogowany.']);
     }
     $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
     if (!str_starts_with($contentType, 'application/json')) {
@@ -38,7 +38,7 @@ if ($metoda === 'POST') {
     $nazwa = is_string($dane['nazwa'] ?? null) ? trim($dane['nazwa']) : '';
     $cena = (int) ($dane['cena'] ?? 0);
     if ($nazwa === '' || $cena <= 0) {
-        odpowiedz(400, ['blad' => 'Uzupelnij nazwe i cene.']);
+        odpowiedz(400, ['blad' => 'Uzupełnij nazwę i cenę.']);
     }
     $z = $pdo->prepare('INSERT INTO uslugi (nazwa, czas, cena, popularnosc) VALUES (:nazwa, :czas, :cena, :popularnosc)');
     $z->execute(['nazwa' => $nazwa, 'czas' => '-', 'cena' => $cena, 'popularnosc' => 0]);
@@ -46,4 +46,5 @@ if ($metoda === 'POST') {
     odpowiedz(201, ['id' => $id, 'nazwa' => $nazwa, 'czas' => '-', 'cena' => $cena, 'popularnosc' => 0]);
 }
 
+header('Allow: GET, POST');
 odpowiedz(405, ['blad' => 'Metoda niedozwolona.']);

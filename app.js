@@ -21,7 +21,7 @@ async function wczytajUslugi(max = '') {
     pokazTabele(uslugi);
     rysujWykres(uslugi);
   } catch (blad) {
-    if (statusInfo) statusInfo.textContent = 'Nie udalo sie wczytac cennika.';
+    if (statusInfo) statusInfo.textContent = 'Nie udało się wczytać cennika.';
   }
 }
 
@@ -36,7 +36,7 @@ function pokazTabele(uslugi) {
     tdCzas.textContent = usluga.czas ?? '';
     const tdCena = document.createElement('td');
     tdCena.className = 'num';
-    tdCena.textContent = usluga.cena + ' zl';
+    tdCena.textContent = usluga.cena + ' zł';
     tr.append(tdNazwa, tdCzas, tdCena);
     tabelaBody.append(tr);
   });
@@ -46,7 +46,7 @@ function rysujWykres(uslugi) {
   if (!wykres) return;
   while (wykres.firstChild) wykres.removeChild(wykres.firstChild);
   const title = document.createElementNS(SVG_NS, 'title');
-  title.textContent = 'Porownanie cen uslug';
+  title.textContent = 'Porównanie cen usług';
   wykres.append(title);
 
   const wartosci = uslugi.map(u => u.popularnosc || u.cena);

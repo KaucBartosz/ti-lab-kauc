@@ -102,7 +102,7 @@ if ($maxCena === 0) {
 
     <section id="cennik">
       <h2>Cennik</h2>
-      <p id="status" roles="status"></p>
+      <p id="status" role="status"></p>
       <label>Max cena (zł): <input id="max" type="number" min="0"></label>
 
       <table class="pricing__table">
@@ -125,7 +125,7 @@ if ($maxCena === 0) {
       </table>
     </section>
 
-    <section id="wykres">
+    <section id="ceny-w-liczbach">
       <h2>Ceny w liczbach</h2>
 
       <svg id="wykres" class="chart" viewBox="0 0 480 220" role="img" aria-labelledby="wykres-tytul">

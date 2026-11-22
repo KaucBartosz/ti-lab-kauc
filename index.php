@@ -103,6 +103,7 @@ if ($maxCena === 0) {
     <section id="cennik">
       <h2>Cennik</h2>
       <p id="status" roles="status"></p>
+      <label>Max cena (zł): <input id="max" type="number" min="0"></label>
 
       <table class="pricing__table">
         <thead>
@@ -127,20 +128,10 @@ if ($maxCena === 0) {
     <section id="wykres">
       <h2>Ceny w liczbach</h2>
 
-      <svg class="chart" viewBox="0 0 480 220" role="img" aria-labelledby="wykres-tytul">
+      <svg id="wykres" class="chart" viewBox="0 0 480 220" role="img" aria-labelledby="wykres-tytul">
         <title id="wykres-tytul">Porównanie cen usług w złotych</title>
-        <?php foreach ($cennik as $i => $usluga): ?>
-          <?php
-            $wartosc = (int) preg_replace('/\D+/', '', $usluga['cena']);
-            $y = 15 + $i * 50;
-            $szerokosc = max(4, (int) round($wartosc / $maxCena * 200));
-            $klasa = $wartosc === $maxCena ? 'chart__bar chart__bar--max' : 'chart__bar';
-          ?>
-          <text x="8" y="<?= $y + 19 ?>" class="chart__label"><?= htmlspecialchars($usluga['nazwa'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></text>
-          <rect x="210" y="<?= $y ?>" width="<?= $szerokosc ?>" height="28" rx="4" class="<?= $klasa ?>"/>
-          <text x="<?= 218 + $szerokosc ?>" y="<?= $y + 19 ?>" class="chart__value"><?= $wartosc ?> zł</text>
-        <?php endforeach; ?>
       </svg>
+
     </section>
   </main>
 

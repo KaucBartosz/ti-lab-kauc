@@ -41,4 +41,61 @@ function pokazTabele(uslugi) {
   });
 }
 
+const poleMax = document.getElementById('max');
+const wykres = document.getElementById('wykres');
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
+function rysujWykres(uslugi) {
+  if (!wykres) return;
+  while (wykres.firstChild) wykres.removeChild(wykres.firstChild);
+  const title = document.createElementNS(SVG_NS, 'title');
+  title.textContent = 'Porównanie cen usług w złotych';
+  wykres.append(title);
+
+  const wartosci = uslugi.map(u => u.popularnosc || u.cena);
+  const najwieksza = Math.max(1, ...wartosci);
+
+  uslugi.forEach(function (usluga, i) {
+    const y = 15 + i * 50;
+    const wartosc = usluga.popularnosc || usluga.cena;
+    const dlugosc = wartosc / najwieksza * 260;
+
+    const pasek = document.createElementNS(SVG_NS, 'rect');
+    pasek.setAttribute('x', 180);
+    pasek.setAttribute('y', y);
+    pasek.setAttribute('width', Math.max(4, dlugosc));
+    pasek.setAttribute('height', 28);
+    pasek.setAttribute('rx', 4);
+    pasek.setAttribute('class', wartosc === najwieksza ? 'chart__bar chart__bar--max' : 'chart__bar');
+    wykres.append(pasek);
+
+    const etykieta = document.createElementNS(SVG_NS, 'text');
+    etykieta.setAttribute('x', 8);
+    etykieta.setAttribute('y', y + 19);
+    etykieta.setAttribute('class', 'chart__label');
+    etykieta.textContent = usluga.nazwa;
+    wykres.append(etykieta);
+
+    const wart = document.createElementNS(SVG_NS, 'text');
+    wart.setAttribute('x', 180 + Math.max(4, dlugosc) + 8);
+    wart.setAttribute('y', y + 19);
+    wart.setAttribute('class', 'chart__value');
+    wart.textContent = wartosc;
+    wykres.append(wart);
+  });
+}
+
+// nadpisz wczytajUslugi, żeby rysowała wykres (już wywołuje rysujWykres)
+
+let opoznienie;
+if (poleMax) {
+  poleMax.addEventListener('input', function () {
+    clearTimeout(opoznienie);
+    opoznienie = setTimeout(function () {
+      wczytajUslugi(poleMax.value.trim());
+    }, 300);
+  });
+}
+
+
 wczytajUslugi();
